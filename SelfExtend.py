@@ -118,7 +118,7 @@ def apply(loaded_model, group_size, window_size, enable_flash_attention=False, s
                                             scale_base=scale_base)
             # after the default version of attention in 4.36 is LlamaSpdaAttention, but in before 4,36 or in 4.38, it is LlamaAttention
             # print("loaded_model", loaded_model)
-            modifed_2 = modify_method_of_instance(loaded_model, "LlamaAttention", "forward", self_extend_attention_forward)
+            modifed_2 = modify_method_of_instance(loaded_model, "LlamaSdpaAttention", "forward", self_extend_attention_forward)
             if not modifed_2:
                 raise Exception(f"Failed to modify the attention method of {arch_name}")
     elif 'Mistral' in arch_name:
